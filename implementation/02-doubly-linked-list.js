@@ -15,14 +15,10 @@ class DoublyLinkedList {
     }
 
     addToHead(val) {
-        // There are bugs in this method! Fix them!!!
-        // Write your hypothesis on the time complexity of this method here
+        const newNode = new DoublyLinkedNode(val);
 
-        // Add node of val to head of linked list
-        let newNode = new DoublyLinkedNode(val);
-
-        if (this.length >= 0) {
-            this.head.previous = newNode;
+        if (this.length > 0) {
+            this.head.prev = newNode;
             newNode.next = this.head;
             this.head = newNode;
         } else {
@@ -31,36 +27,73 @@ class DoublyLinkedList {
         }
 
         this.length++;
+        return this;
+        // time complexity: O(1) - adding a node to the head is a constant time operation
     }
 
     addToTail(val) {
-        // Add node of val to tail of linked list
+        const newNode = new DoublyLinkedNode(val);
 
-        // Write your hypothesis on the time complexity of this method here
+        if (this.length > 0) {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode
+        } else {
+            this.head = newNode;
+            this.tail = newNode;
+        }
+
+        this.length++;
+        return this;
+        // time complexity: O(1) - adding a node to the tail is a constant time operation
     }
 
     removeFromHead() {
-        // Remove node at head
+        if (this.length === 0) return undefined;
 
-        // Write your hypothesis on the time complexity of this method here
+        const removedHead = this.head;
+
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.prev = null;
+        }
+
+        this.length--;
+        return removedHead.value;
+        // time complexity: O(1) - removing the head is a constant time operation
     }
 
     removeFromTail() {
-        // Remove node at tail
+        if (this.length === 0) return undefined;
 
-        // Write your hypothesis on the time complexity of this method here
+        const removedTail = this.tail;
+
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        }
+
+        this.length--;
+        return removedTail.value;
+        // time complexity: O(1) - removing the tail is a constant time operation
     }
 
     peekAtHead() {
-        // Return value of head node
-
-        // Write your hypothesis on the time complexity of this method here
+        if (this.length === 0) return undefined;
+        return this.head.value;
+        // time complexity: O(1) - peeking at the head is a constant time operation
     }
 
     peekAtTail() {
-        // Return value of tail node
-        
-        // Write your hypothesis on the time complexity of this method here
+        if (this.length === 0) return undefined;
+        return this.tail.value;
+        // time complexity: O(1) - peeking at the tail is a constant time operation
     }
 }
 
