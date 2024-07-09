@@ -30,26 +30,67 @@ class SinglyLinkedList {
     }
 
     listLength() {
-        // Returns the length of the list
-        // Implement in O(n) and in O(1) time complexity
+        // O(n): traverse the list and count the nodes
+        // O(1): maintain a `length` property updated during insertions and deletions
+        let current = this.head;
+        let length = 0;
+
+        while (current) {
+            length++;
+            current = current.next;
+        }
+
+        return length;
+        // Time complexity: O(n)
     }
 
     sumOfNodes() {
-        // Returns the sum of the values of all the nodes
+        // traverse the list and accumulate the sum of node values
+        // time complexity: O(n) - we have to visit each node to sum the values
+        let current = this.head;
+        let sum = 0;
 
-        // Write your hypothesis on the time complexity of this method here
+        while (current) {
+            sum += current.value;
+            current = current.next;
+        }
+
+        return sum;
+        // time complexity: O(n)
     }
 
     averageValue() {
-        // Returns the average value of all the nodes
+        // traverse the list to get the sum and count of nodes, then compute the average
+        // time complexity: O(n) - we have to visit each node to sum the values and count the nodes
+        if (this.head === null) return 0;
 
-        // Write your hypothesis on the time complexity of this method here
+        let current = this.head;
+        let sum = 0;
+        let count = 0;
+
+        while (current) {
+            sum += current.value;
+            count++;
+            current = current.next;
+        }
+
+        return sum / count;
+        // time complexity: O(n)
     }
 
     findNthNode(n) {
-        // Returns the node at the nth index from the head
+        // traverse the list to the nth position and return the node
+        // time complexity: O(n) - we may have to traverse up to the nth node
+        let current = this.head;
+        let count = 0;
 
-        // Write your hypothesis on the time complexity of this method here
+        while (current && count < n) {
+            current = current.next;
+            count++;
+        }
+
+        return current ? current : null;
+        // time complexity: O(n)
     }
 
     findMid() {
